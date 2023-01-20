@@ -77,7 +77,7 @@ int main(){
 
 
                 }
-
+      
         else{
             while(1){
                 if (getchar()=='\n'){
