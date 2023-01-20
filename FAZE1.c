@@ -9,17 +9,18 @@
 #define MAX 500
 
 
-    void careeate_file(char ptr[]){ // function for creating folder.
-       char arr[MAX];
-       int j=0,counter=-1;
-       int b=strlen(ptr);
-        for (int i = 1; i<b ;i++)
-        {
+    void create_folder(char ptr[]){ // function for creating folder.
+       char arr[MAX],text[MAX];
 
+       int j=0,counter=-1;
+       int length_of_command=strlen(ptr);
+        for (int i = 1; i<length_of_command ;i++)
+        {
             arr[j] = ptr[i];
             j++;
             i++;
-           while (ptr[i] != '/')
+
+           while (ptr[i] != '/' && i <= length_of_command)
            {
                if (ptr[i]=='/'){
                    ptr[i]=='\0';
@@ -38,19 +39,37 @@
             }
             chdir(arr);
             counter++;
+            strcpy(text,arr);
             memset(arr , 0 , j);
             j=0;
        }
+       chdir("..");
+        _rmdir(text);
+        create_file(text);
 
-       for(int h=0; h <= counter; h++)
+       for(int h=0; h < counter; h++)
        {
            chdir("..");
        }
 
     }
+
+
+
+   void create_file(char file_name[]){
+
+    FILE* write_file = fopen(file_name, "w");
+
+    fputs(file_name,write_file);
+    fclose(write_file);
+
+    FILE* read_file = fopen(file_name, "r");
+
+    fclose(read_file);
+}
 //--------------------------------------------------
 int main(){
-                                            //declare variables.
+                                //declare variables.
     char input[MAX];
     char command[MAX];
     char ptr[MAX];
@@ -67,7 +86,7 @@ int main(){
             if (strcmp(command,"--file")==0)
             {
                 scanf(" %s",path);
-                careeate_file(path);       // function for making folder.
+                create_folder(path);       // function for making folder.
 
             }
             else
@@ -77,7 +96,7 @@ int main(){
 
 
                 }
-      
+
         else{
             while(1){
                 if (getchar()=='\n'){
