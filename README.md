@@ -1,2 +1,2 @@
 
-NAME: Fereydoon , LASTNAME: Solhjoo ,STUDENT ID: 401106171 .
+Fereydoon Solhjoo 401106171 .
